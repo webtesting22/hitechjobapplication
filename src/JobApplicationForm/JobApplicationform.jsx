@@ -201,19 +201,7 @@ const JobApplicationForm = () => {
                                     rules={[
                                         { required: true, message: 'Please enter your contact number' },
                                         { pattern: /^[0-9]{10}$/, message: 'Contact number must be a 10-digit number' },
-                                        {
-                                            // Disallow special characters and multiple consecutive spaces
-                                            pattern: /^(?!.* {2})[a-zA-Z0-9 ]*$/,
-                                            message: 'Special characters and multiple consecutive spaces are not allowed!',
-                                          },
-                                          {
-                                            validator: (_, value) => {
-                                              if (/^[a-zA-Z][a-zA-Z ]*$/.test(value) && !/\d/.test(value)) {
-                                                return Promise.resolve();
-                                              }
-                                              return Promise.reject(new Error('Names cannot include numbers or multiple consecutive spaces!'));
-                                            },
-                                          },
+                                       
                                     ]}
                                 >
                                     <Input

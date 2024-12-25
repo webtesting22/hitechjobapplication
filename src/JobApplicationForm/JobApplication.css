@@ -55,15 +55,30 @@ justify-content: center;
 .tokenDisplay h1{
     text-align: center;
 }
+.FooterBtn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
 
 @media (max-width:769px){
+    .FooterBtn{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 20px;
+    }
+    
     #JobApplicationFormContainer .ApplicationFormContainer{
         width: 90%;
     }
     .SubmitBtnContainer{
         display: flex;
-       
+        justify-content: center;
     }
+   
     .ApplicationFormContainer .ant-form .ant-form-item{
         margin-bottom: 10px;
     }

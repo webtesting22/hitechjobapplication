@@ -333,7 +333,7 @@ const JobApplicationForm = () => {
                         <br /><br />
 
                         <div className="SubmitBtnContainer">
-                            <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "20px" }}>
+                            <div className="FooterBtn">
                                 <Form.Item style={{ margin: "0px" }}>
                                     <Row justify="center">
                                         <Button type="primary" htmlType="submit" >

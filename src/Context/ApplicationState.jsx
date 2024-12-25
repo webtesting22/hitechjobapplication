@@ -19,7 +19,7 @@ export const ApplicationState = ({ children }) => {
         // Log the mobile number being passed to the API
         console.log(`Generating token for mobile number: ${mobileNumber}`);
 
-        fetch(`http://localhost:4040/api/hightech/getTokenFromContact?contact=${mobileNumber}`)
+        fetch(`https://napi.prepseed.com/hightech/getTokenFromContact?contact=${mobileNumber}`)
             .then((response) => {
                 // Check for response status and log the response
                 console.log('API Response Status:', response.status);

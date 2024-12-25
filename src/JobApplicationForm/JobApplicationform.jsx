@@ -55,7 +55,7 @@ const JobApplicationForm = () => {
         console.log("requestbody", requestBody);
 
         try {
-            const response = await fetch(`http://localhost:4040/api/hightech/addJobApplication`, {
+            const response = await fetch(`https://napi.prepseed.com/hightech/addJobApplication`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

@@ -186,6 +186,7 @@ const JobApplicationForm = () => {
                                     label="What is your contact number?"
                                     rules={[
                                         { required: true, message: 'Please enter your contact number' },
+                                        { pattern: /^[0-9]{10}$/, message: 'Contact number must be a 10-digit number' },
                                     ]}
                                 >
                                     <Input
@@ -268,7 +269,11 @@ const JobApplicationForm = () => {
                                 <Form.Item
                                     name="experience"
                                     label="How many years of experience do you have?"
-                                    rules={[{ required: true, message: 'Please enter your experience' }]}
+                                    rules={[
+                                        { required: true, message: 'Please enter your experience' },
+                                        { type: 'number', min: 0, message: 'Experience must be a positive number' },
+                                    ]}
+                                
                                 >
                                     <InputNumber
                                         min={0}
@@ -310,6 +315,7 @@ const JobApplicationForm = () => {
                                     label="What is your notice period?"
                                     rules={[
                                         { required: true, message: 'Please enter your notice period' },
+                                        { pattern: /^[0-9]+$/, message: 'Notice period must be a numeric value' },
                                     ]}
                                 >
                                     <Input

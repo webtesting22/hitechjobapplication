@@ -179,19 +179,7 @@ const JobApplicationForm = () => {
                                     name="fullName"
                                     label="What is your Full Name?"
                                     rules={[{ required: true, message: 'Please enter your full name' },
-                                        {
-                                            // Disallow special characters and multiple consecutive spaces
-                                            pattern: /^(?!.* {2})[a-zA-Z0-9 ]*$/,
-                                            message: 'Special characters and multiple consecutive spaces are not allowed!',
-                                          },
-                                          {
-                                            validator: (_, value) => {
-                                              if (/^[a-zA-Z][a-zA-Z ]*$/.test(value) && !/\d/.test(value)) {
-                                                return Promise.resolve();
-                                              }
-                                              return Promise.reject(new Error('Names cannot include numbers or multiple consecutive spaces!'));
-                                            },
-                                          },
+                                       
                                     ]}
                                 >
                                     <Input

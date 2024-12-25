@@ -122,7 +122,7 @@ const JobApplicationForm = () => {
                             <Col lg={12} md={24} style={{ width: "100%" }}>
                                 <Form.Item
                                     name="department"
-                                    label="Which department are you applying for?"
+                                    label="Which Department are you Applying for?"
                                     rules={[{ required: true, message: 'Please select a department' }]}
                                 >
                                     <Select
@@ -145,7 +145,7 @@ const JobApplicationForm = () => {
                             <Col lg={12} md={24} style={{ width: "100%" }}>
                                 <Form.Item
                                     name="position"
-                                    label="What position are you applying for?"
+                                    label="What Position are you Applying for?"
                                     rules={[{ required: true, message: 'Please enter the position' }]}
                                 >
                                     <Input
@@ -165,7 +165,7 @@ const JobApplicationForm = () => {
                             <Col lg={12} md={24} style={{ width: "100%" }}>
                                 <Form.Item
                                     name="fullName"
-                                    label="What is your full name?"
+                                    label="What is your Full Name?"
                                     rules={[{ required: true, message: 'Please enter your full name' }]}
                                 >
                                     <Input
@@ -183,7 +183,7 @@ const JobApplicationForm = () => {
                             <Col lg={12} md={24} style={{ width: "100%" }}>
                                 <Form.Item
                                     name="contactNumber"
-                                    label="What is your contact number?"
+                                    label="What is your Contact Number?"
                                     rules={[
                                         { required: true, message: 'Please enter your contact number' },
                                         { pattern: /^[0-9]{10}$/, message: 'Contact number must be a 10-digit number' },
@@ -206,7 +206,7 @@ const JobApplicationForm = () => {
                             <Col lg={12} md={24} style={{ width: "100%" }}>
                                 <Form.Item
                                     name="currentLocation"
-                                    label="Where are you currently located?"
+                                    label="Where are you Currently Located?"
                                     rules={[
                                         { required: true, message: 'Please enter your current location' },
                                     ]}
@@ -226,7 +226,7 @@ const JobApplicationForm = () => {
                             <Col lg={12} md={24} style={{ width: "100%" }}>
                                 <Form.Item
                                     name="permanentLocation"
-                                    label="What is your permanent location?"
+                                    label="What is your Permanent Location?"
                                     rules={[
                                         { required: true, message: 'Please enter your permanent location' },
                                     ]}
@@ -248,7 +248,7 @@ const JobApplicationForm = () => {
                             <Col lg={12} md={24} style={{ width: "100%" }}>
                                 <Form.Item
                                     name="qualification"
-                                    label="What is your highest qualification?"
+                                    label="What is your Highest Qualification?"
                                     rules={[
                                         { required: true, message: 'Please enter your qualification' },
                                     ]}
@@ -268,12 +268,12 @@ const JobApplicationForm = () => {
                             <Col lg={12} md={24} style={{ width: "100%" }}>
                                 <Form.Item
                                     name="experience"
-                                    label="How many years of experience do you have?"
+                                    label="How many years of Experience do you have?"
                                     rules={[
                                         { required: true, message: 'Please enter your experience' },
                                         { type: 'number', min: 0, message: 'Experience must be a positive number' },
                                     ]}
-                                
+
                                 >
                                     <InputNumber
                                         min={0}
@@ -294,7 +294,7 @@ const JobApplicationForm = () => {
                             <Col lg={12} md={24} style={{ width: "100%" }}>
                                 <Form.Item
                                     name="reference"
-                                    label="How did you hear about us? (e.g., friend, agency)"
+                                    label="How did you hear About Us? (e.g., friend, agency)"
                                     rules={[{ required: true, message: 'Please enter a reference' }]}
                                 >
                                     <Input
@@ -312,7 +312,7 @@ const JobApplicationForm = () => {
                             <Col lg={12} md={24} style={{ width: "100%" }}>
                                 <Form.Item
                                     name="noticePeriod"
-                                    label="What is your notice period?"
+                                    label="What is your Notice Period?"
                                     rules={[
                                         { required: true, message: 'Please enter your notice period' },
                                         { pattern: /^[0-9]+$/, message: 'Notice period must be a numeric value' },
@@ -333,15 +333,15 @@ const JobApplicationForm = () => {
                         <br /><br />
 
                         <div className="SubmitBtnContainer">
-                            <div style={{display:"flex",alignItems:"center",justifyContent:"center",gap:"20px"}}>
-                            <Form.Item style={{margin:"0px"}}>
-                                <Row justify="center">
-                                    <Button type="primary" htmlType="submit" >
-                                        Submit Application
-                                    </Button>
-                                </Row>
-                            </Form.Item>
-                            <a onClick={toggleScreen} style={{ color: "#0d2e61",textAlign:"center",cursor:"pointer"}}>Already submitted? Click here!</a>
+                            <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "20px" }}>
+                                <Form.Item style={{ margin: "0px" }}>
+                                    <Row justify="center">
+                                        <Button type="primary" htmlType="submit" >
+                                            Submit Application
+                                        </Button>
+                                    </Row>
+                                </Form.Item>
+                                <a onClick={toggleScreen} style={{ color: "#0d2e61", textAlign: "center", cursor: "pointer" }}>Already Submitted? Click Here!</a>
                             </div>
                             {token && (
                                 <div className="tokenDisplay">

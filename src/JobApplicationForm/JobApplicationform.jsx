@@ -411,11 +411,11 @@ const JobApplicationForm = () => {
                                 </Form.Item>
                                 <a onClick={toggleScreen} style={{ color: "#0d2e61", textAlign: "center", cursor: "pointer" }}>Already Submitted? Click Here!</a>
                             </div>
-                            {/* {token && (
+                            {token && (
                                 <div className="tokenDisplay">
                                     <h1>Your Token  Number is: {token}</h1>
                                 </div>
-                            )} */}
+                            )}
                         </div>
                         <br /><br />
                     </Form>

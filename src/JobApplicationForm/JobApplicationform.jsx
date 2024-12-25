@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext,useState } from "react";
 import "./JobApplication.css"
 import {
     Card,
@@ -20,6 +20,7 @@ const JobApplicationForm = () => {
     const { TabPane } = Tabs;
     const { Option } = Select;
     const { Text, Title } = Typography;
+    const [tokenNumber, setTokenNumber] = useState(null); 
     const onFinish = values => {
         console.log('Form values:', values);
         addJobApplication(values)
@@ -38,9 +39,9 @@ const JobApplicationForm = () => {
             reference,
             noticePeriod,
         } = data;
-        if (contactNumber) {
-            generateToken(contactNumber);
-        }
+        // if (contactNumber) {
+        //     generateToken(contactNumber);
+        // }
         const requestBody = {
             departement: department,
             position,
@@ -66,6 +67,9 @@ const JobApplicationForm = () => {
 
             if (response.ok) {
                 const responseData = await response.json();
+                const receivedToken = responseData?.jobApplication?.token;
+                setTokenNumber(receivedToken);
+
                 notification.success({
                     message: 'Success',
                     description: responseData?.message || 'Job application added successfully!',
@@ -405,9 +409,9 @@ const JobApplicationForm = () => {
                                 </Form.Item>
                                 <a onClick={toggleScreen} style={{ color: "#0d2e61", textAlign: "center", cursor: "pointer" }}>Already submitted? Click here!</a>
                             </div>
-                            {token && (
+                            {tokenNumber && (
                                 <div className="tokenDisplay">
-                                    <h1>Your Token  Number is: {token}</h1>
+                                    <h1>Your Token  Number is: {tokenNumber}</h1>
                                 </div>
                             )}
                         </div>

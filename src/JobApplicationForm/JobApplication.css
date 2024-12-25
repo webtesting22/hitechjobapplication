@@ -1,48 +1,55 @@
-#JobApplicationFormContainer{
-    width: 100%;
-display: flex;
-justify-content: center;
-}
-
-#JobApplicationFormContainer .ApplicationFormContainer{
-    width: 70%;
-    z-index: 3;
-}
-.Formheader{
-    margin: 3rem 0rem;
-}
-
-.SubmitBtnContainer .ant-btn{
-    background-color: #0d2e61 !important;
-    transition: .5s;
-}
-.SubmitBtnContainer .ant-btn:hover{
-    background-color: #0d2e61 !important;
-    transform: scale(1.05);
-    transition: .5s;
-}
-.headerLogo{
+#JobApplicationFormContainer {
     width: 100%;
     display: flex;
     justify-content: center;
 }
-#ApplicationTabsContainer .ant-tabs-nav{
+
+#JobApplicationFormContainer .ApplicationFormContainer {
+    width: 70%;
+    z-index: 3;
+}
+
+.Formheader {
+    margin: 3rem 0rem;
+}
+
+.SubmitBtnContainer .ant-btn {
+    background-color: #0d2e61 !important;
+    transition: .5s;
+}
+
+.SubmitBtnContainer .ant-btn:hover {
+    background-color: #0d2e61 !important;
+    transform: scale(1.05);
+    transition: .5s;
+}
+
+.headerLogo {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#ApplicationTabsContainer .ant-tabs-nav {
     background-color: white !important;
     position: sticky;
     top: -20px;
     z-index: 555;
 }
-.CardHeaderContainer{
+
+.CardHeaderContainer {
     /* height: 70px; */
     display: flex;
     align-items: center;
     width: 100%;
 }
-.CardHeaderContainer h4{
+
+.CardHeaderContainer h4 {
     font-size: 20px;
     font-weight: 600;
 }
-.BackBannerContainer img{
+
+.BackBannerContainer img {
     position: absolute;
     top: 0px;
     height: 100%;
@@ -50,39 +57,43 @@ justify-content: center;
     object-fit: cover;
     left: 0px;
     opacity: 0.4;
-    
+
 }
-.tokenDisplay h1{
+
+.tokenDisplay h1 {
     text-align: center;
 }
-.FooterBtn{
+
+.FooterBtn {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 20px;
 }
 
-@media (max-width:769px){
-    .FooterBtn{
+@media (max-width:769px) {
+    .FooterBtn {
         display: flex;
         align-items: center;
         justify-content: center;
         flex-direction: column;
         gap: 20px;
     }
-    
-    #JobApplicationFormContainer .ApplicationFormContainer{
+
+    #JobApplicationFormContainer .ApplicationFormContainer {
         width: 90%;
     }
-    .SubmitBtnContainer{
+
+    .SubmitBtnContainer {
         display: flex;
         justify-content: center;
     }
-   
-    .ApplicationFormContainer .ant-form .ant-form-item{
+
+    .ApplicationFormContainer .ant-form .ant-form-item {
         margin-bottom: 10px;
     }
-    .Formheader{
+
+    .Formheader {
         margin: 1rem 0rem;
     }
 }

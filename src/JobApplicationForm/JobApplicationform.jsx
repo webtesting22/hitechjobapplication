@@ -146,7 +146,19 @@ const JobApplicationForm = () => {
                                 <Form.Item
                                     name="position"
                                     label="What Position are you Applying for?"
-                                    rules={[{ required: true, message: 'Please enter the position' }]}
+                                    rules={[{ required: true, message: 'Please enter the position' },{
+                                        // Disallow special characters and multiple consecutive spaces
+                                        pattern: /^(?!.* {2})[a-zA-Z0-9 ]*$/,
+                                        message: 'Special characters and multiple consecutive spaces are not allowed!',
+                                      },
+                                      {
+                                        validator: (_, value) => {
+                                          if (/^[a-zA-Z][a-zA-Z ]*$/.test(value) && !/\d/.test(value)) {
+                                            return Promise.resolve();
+                                          }
+                                          return Promise.reject(new Error('Names cannot include numbers or multiple consecutive spaces!'));
+                                        },
+                                      },]}
                                 >
                                     <Input
                                         placeholder="Enter position"
@@ -166,7 +178,21 @@ const JobApplicationForm = () => {
                                 <Form.Item
                                     name="fullName"
                                     label="What is your Full Name?"
-                                    rules={[{ required: true, message: 'Please enter your full name' }]}
+                                    rules={[{ required: true, message: 'Please enter your full name' },
+                                        {
+                                            // Disallow special characters and multiple consecutive spaces
+                                            pattern: /^(?!.* {2})[a-zA-Z0-9 ]*$/,
+                                            message: 'Special characters and multiple consecutive spaces are not allowed!',
+                                          },
+                                          {
+                                            validator: (_, value) => {
+                                              if (/^[a-zA-Z][a-zA-Z ]*$/.test(value) && !/\d/.test(value)) {
+                                                return Promise.resolve();
+                                              }
+                                              return Promise.reject(new Error('Names cannot include numbers or multiple consecutive spaces!'));
+                                            },
+                                          },
+                                    ]}
                                 >
                                     <Input
                                         placeholder="Enter full name"
@@ -187,6 +213,19 @@ const JobApplicationForm = () => {
                                     rules={[
                                         { required: true, message: 'Please enter your contact number' },
                                         { pattern: /^[0-9]{10}$/, message: 'Contact number must be a 10-digit number' },
+                                        {
+                                            // Disallow special characters and multiple consecutive spaces
+                                            pattern: /^(?!.* {2})[a-zA-Z0-9 ]*$/,
+                                            message: 'Special characters and multiple consecutive spaces are not allowed!',
+                                          },
+                                          {
+                                            validator: (_, value) => {
+                                              if (/^[a-zA-Z][a-zA-Z ]*$/.test(value) && !/\d/.test(value)) {
+                                                return Promise.resolve();
+                                              }
+                                              return Promise.reject(new Error('Names cannot include numbers or multiple consecutive spaces!'));
+                                            },
+                                          },
                                     ]}
                                 >
                                     <Input
@@ -209,6 +248,19 @@ const JobApplicationForm = () => {
                                     label="Where are you Currently Located?"
                                     rules={[
                                         { required: true, message: 'Please enter your current location' },
+                                        {
+                                            // Disallow special characters and multiple consecutive spaces
+                                            pattern: /^(?!.* {2})[a-zA-Z0-9 ]*$/,
+                                            message: 'Special characters and multiple consecutive spaces are not allowed!',
+                                          },
+                                          {
+                                            validator: (_, value) => {
+                                              if (/^[a-zA-Z][a-zA-Z ]*$/.test(value) && !/\d/.test(value)) {
+                                                return Promise.resolve();
+                                              }
+                                              return Promise.reject(new Error('Names cannot include numbers or multiple consecutive spaces!'));
+                                            },
+                                          },
                                     ]}
                                 >
                                     <Input
@@ -229,6 +281,19 @@ const JobApplicationForm = () => {
                                     label="What is your Permanent Location?"
                                     rules={[
                                         { required: true, message: 'Please enter your permanent location' },
+                                        {
+                                            // Disallow special characters and multiple consecutive spaces
+                                            pattern: /^(?!.* {2})[a-zA-Z0-9 ]*$/,
+                                            message: 'Special characters and multiple consecutive spaces are not allowed!',
+                                          },
+                                          {
+                                            validator: (_, value) => {
+                                              if (/^[a-zA-Z][a-zA-Z ]*$/.test(value) && !/\d/.test(value)) {
+                                                return Promise.resolve();
+                                              }
+                                              return Promise.reject(new Error('Names cannot include numbers or multiple consecutive spaces!'));
+                                            },
+                                          },
                                     ]}
                                 >
                                     <Input
@@ -251,6 +316,19 @@ const JobApplicationForm = () => {
                                     label="What is your Highest Qualification?"
                                     rules={[
                                         { required: true, message: 'Please enter your qualification' },
+                                        {
+                                            // Disallow special characters and multiple consecutive spaces
+                                            pattern: /^(?!.* {2})[a-zA-Z0-9 ]*$/,
+                                            message: 'Special characters and multiple consecutive spaces are not allowed!',
+                                          },
+                                          {
+                                            validator: (_, value) => {
+                                              if (/^[a-zA-Z][a-zA-Z ]*$/.test(value) && !/\d/.test(value)) {
+                                                return Promise.resolve();
+                                              }
+                                              return Promise.reject(new Error('Names cannot include numbers or multiple consecutive spaces!'));
+                                            },
+                                          },
                                     ]}
                                 >
                                     <Input
@@ -295,7 +373,21 @@ const JobApplicationForm = () => {
                                 <Form.Item
                                     name="reference"
                                     label="How did you hear About Us? (e.g., friend, agency)"
-                                    rules={[{ required: true, message: 'Please enter a reference' }]}
+                                    rules={[{ required: true, message: 'Please enter a reference' },
+                                        {
+                                            // Disallow special characters and multiple consecutive spaces
+                                            pattern: /^(?!.* {2})[a-zA-Z0-9 ]*$/,
+                                            message: 'Special characters and multiple consecutive spaces are not allowed!',
+                                          },
+                                          {
+                                            validator: (_, value) => {
+                                              if (/^[a-zA-Z][a-zA-Z ]*$/.test(value) && !/\d/.test(value)) {
+                                                return Promise.resolve();
+                                              }
+                                              return Promise.reject(new Error('Names cannot include numbers or multiple consecutive spaces!'));
+                                            },
+                                          },
+                                    ]}
                                 >
                                     <Input
                                         placeholder="Enter reference"

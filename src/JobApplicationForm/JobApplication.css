@@ -1,0 +1,73 @@
+#JobApplicationFormContainer{
+    width: 100%;
+display: flex;
+justify-content: center;
+}
+
+#JobApplicationFormContainer .ApplicationFormContainer{
+    width: 70%;
+    z-index: 3;
+}
+.Formheader{
+    margin: 3rem 0rem;
+}
+
+.SubmitBtnContainer .ant-btn{
+    background-color: #0d2e61 !important;
+    transition: .5s;
+}
+.SubmitBtnContainer .ant-btn:hover{
+    background-color: #0d2e61 !important;
+    transform: scale(1.05);
+    transition: .5s;
+}
+.headerLogo{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+#ApplicationTabsContainer .ant-tabs-nav{
+    background-color: white !important;
+    position: sticky;
+    top: -20px;
+    z-index: 555;
+}
+.CardHeaderContainer{
+    /* height: 70px; */
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+.CardHeaderContainer h4{
+    font-size: 20px;
+    font-weight: 600;
+}
+.BackBannerContainer img{
+    position: absolute;
+    top: 0px;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    left: 0px;
+    opacity: 0.4;
+    
+}
+.tokenDisplay h1{
+    text-align: center;
+}
+
+@media (max-width:769px){
+    #JobApplicationFormContainer .ApplicationFormContainer{
+        width: 90%;
+    }
+    .SubmitBtnContainer{
+        display: flex;
+       
+    }
+    .ApplicationFormContainer .ant-form .ant-form-item{
+        margin-bottom: 10px;
+    }
+    .Formheader{
+        margin: 1rem 0rem;
+    }
+}

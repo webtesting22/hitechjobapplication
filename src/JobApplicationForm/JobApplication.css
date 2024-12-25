@@ -72,6 +72,9 @@
 }
 
 @media (max-width:769px) {
+    .ApplicationFormContainer .ant-form-item-required{
+        font-weight: 600;
+    }
     .FooterBtn {
         display: flex;
         align-items: center;

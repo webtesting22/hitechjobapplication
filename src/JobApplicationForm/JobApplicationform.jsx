@@ -11,6 +11,7 @@ import {
     Input,
     InputNumber,
     Row,
+    notification
 } from 'antd';
 import { ApplicationContext } from "../Context/Applicationcontext";
 
@@ -55,7 +56,7 @@ const JobApplicationForm = () => {
         console.log("requestbody", requestBody);
 
         try {
-            const response = await fetch(`https://napi.prepseed.com/hightech/addJobApplication`, {
+            const response = await fetch(`http://localhost:4040/api/hightech/addJobApplication`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -65,8 +66,14 @@ const JobApplicationForm = () => {
 
             if (response.ok) {
                 const responseData = await response.json();
+                notification.success({
+                    message: 'Success',
+                    description: responseData?.message || 'Job application added successfully!',
+                });
                 console.log('Job application added successfully:', responseData);
             } else {
+                const data = await response.json()
+                notification.error({ message: data?.message })
                 console.error('Error adding job application:', response.statusText);
             }
         } catch (error) {
@@ -122,7 +129,7 @@ const JobApplicationForm = () => {
                             <Col lg={12} md={24} style={{ width: "100%" }}>
                                 <Form.Item
                                     name="department"
-                                    label="Which Department are you Applying for?"
+                                    label="Which department are you applying for?"
                                     rules={[{ required: true, message: 'Please select a department' }]}
                                 >
                                     <Select
@@ -145,20 +152,20 @@ const JobApplicationForm = () => {
                             <Col lg={12} md={24} style={{ width: "100%" }}>
                                 <Form.Item
                                     name="position"
-                                    label="What Position are you Applying for?"
-                                    rules={[{ required: true, message: 'Please enter the position' },{
+                                    label="What position are you applying for?"
+                                    rules={[{ required: true, message: 'Please enter the position' }, {
                                         // Disallow special characters and multiple consecutive spaces
                                         pattern: /^(?!.* {2})[a-zA-Z0-9 ]*$/,
                                         message: 'Special characters and multiple consecutive spaces are not allowed!',
-                                      },
-                                      {
+                                    },
+                                    {
                                         validator: (_, value) => {
-                                          if (/^[a-zA-Z][a-zA-Z ]*$/.test(value) && !/\d/.test(value)) {
-                                            return Promise.resolve();
-                                          }
-                                          return Promise.reject(new Error('Names cannot include numbers or multiple consecutive spaces!'));
+                                            if (/^[a-zA-Z][a-zA-Z ]*$/.test(value) && !/\d/.test(value)) {
+                                                return Promise.resolve();
+                                            }
+                                            return Promise.reject(new Error('Names cannot include numbers or multiple consecutive spaces!'));
                                         },
-                                      },]}
+                                    },]}
                                 >
                                     <Input
                                         placeholder="Enter position"
@@ -177,10 +184,20 @@ const JobApplicationForm = () => {
                             <Col lg={12} md={24} style={{ width: "100%" }}>
                                 <Form.Item
                                     name="fullName"
-                                    label="What is your Full Name?"
-                                    rules={[{ required: true, message: 'Please enter your full name' },
-                                       
-                                    ]}
+                                    label="What is your full name?"
+                                    rules={[{ required: true, message: 'Please enter your full name' }, {
+                                        // Disallow special characters and multiple consecutive spaces
+                                        pattern: /^(?!.* {2})[a-zA-Z0-9 ]*$/,
+                                        message: 'Special characters and multiple consecutive spaces are not allowed!',
+                                    },
+                                    {
+                                        validator: (_, value) => {
+                                            if (/^[a-zA-Z][a-zA-Z ]*$/.test(value) && !/\d/.test(value)) {
+                                                return Promise.resolve();
+                                            }
+                                            return Promise.reject(new Error('Names cannot include numbers or multiple consecutive spaces!'));
+                                        },
+                                    },]}
                                 >
                                     <Input
                                         placeholder="Enter full name"
@@ -197,11 +214,10 @@ const JobApplicationForm = () => {
                             <Col lg={12} md={24} style={{ width: "100%" }}>
                                 <Form.Item
                                     name="contactNumber"
-                                    label="What is your Contact Number?"
+                                    label="What is your contact number?"
                                     rules={[
                                         { required: true, message: 'Please enter your contact number' },
                                         { pattern: /^[0-9]{10}$/, message: 'Contact number must be a 10-digit number' },
-                                       
                                     ]}
                                 >
                                     <Input
@@ -221,22 +237,15 @@ const JobApplicationForm = () => {
                             <Col lg={12} md={24} style={{ width: "100%" }}>
                                 <Form.Item
                                     name="currentLocation"
-                                    label="Where are you Currently Located?"
+                                    label="Where are you currently located?"
                                     rules={[
                                         { required: true, message: 'Please enter your current location' },
                                         {
                                             // Disallow special characters and multiple consecutive spaces
                                             pattern: /^(?!.* {2})[a-zA-Z0-9 ]*$/,
                                             message: 'Special characters and multiple consecutive spaces are not allowed!',
-                                          },
-                                          {
-                                            validator: (_, value) => {
-                                              if (/^[a-zA-Z][a-zA-Z ]*$/.test(value) && !/\d/.test(value)) {
-                                                return Promise.resolve();
-                                              }
-                                              return Promise.reject(new Error('Names cannot include numbers or multiple consecutive spaces!'));
-                                            },
-                                          },
+                                        },
+
                                     ]}
                                 >
                                     <Input
@@ -254,22 +263,15 @@ const JobApplicationForm = () => {
                             <Col lg={12} md={24} style={{ width: "100%" }}>
                                 <Form.Item
                                     name="permanentLocation"
-                                    label="What is your Permanent Location?"
+                                    label="What is your permanent location?"
                                     rules={[
                                         { required: true, message: 'Please enter your permanent location' },
                                         {
                                             // Disallow special characters and multiple consecutive spaces
                                             pattern: /^(?!.* {2})[a-zA-Z0-9 ]*$/,
                                             message: 'Special characters and multiple consecutive spaces are not allowed!',
-                                          },
-                                          {
-                                            validator: (_, value) => {
-                                              if (/^[a-zA-Z][a-zA-Z ]*$/.test(value) && !/\d/.test(value)) {
-                                                return Promise.resolve();
-                                              }
-                                              return Promise.reject(new Error('Names cannot include numbers or multiple consecutive spaces!'));
-                                            },
-                                          },
+                                        },
+
                                     ]}
                                 >
                                     <Input
@@ -289,22 +291,15 @@ const JobApplicationForm = () => {
                             <Col lg={12} md={24} style={{ width: "100%" }}>
                                 <Form.Item
                                     name="qualification"
-                                    label="What is your Highest Qualification?"
+                                    label="What is your highest qualification?"
                                     rules={[
                                         { required: true, message: 'Please enter your qualification' },
                                         {
                                             // Disallow special characters and multiple consecutive spaces
                                             pattern: /^(?!.* {2})[a-zA-Z0-9 ]*$/,
                                             message: 'Special characters and multiple consecutive spaces are not allowed!',
-                                          },
-                                          {
-                                            validator: (_, value) => {
-                                              if (/^[a-zA-Z][a-zA-Z ]*$/.test(value) && !/\d/.test(value)) {
-                                                return Promise.resolve();
-                                              }
-                                              return Promise.reject(new Error('Names cannot include numbers or multiple consecutive spaces!'));
-                                            },
-                                          },
+                                        },
+
                                     ]}
                                 >
                                     <Input
@@ -322,10 +317,11 @@ const JobApplicationForm = () => {
                             <Col lg={12} md={24} style={{ width: "100%" }}>
                                 <Form.Item
                                     name="experience"
-                                    label="How many years of Experience do you have?"
+                                    label="How many years of experience do you have?"
                                     rules={[
                                         { required: true, message: 'Please enter your experience' },
                                         { type: 'number', min: 0, message: 'Experience must be a positive number' },
+
                                     ]}
 
                                 >
@@ -348,22 +344,20 @@ const JobApplicationForm = () => {
                             <Col lg={12} md={24} style={{ width: "100%" }}>
                                 <Form.Item
                                     name="reference"
-                                    label="How did you hear About Us? (e.g., friend, agency)"
-                                    rules={[{ required: true, message: 'Please enter a reference' },
-                                        {
-                                            // Disallow special characters and multiple consecutive spaces
-                                            pattern: /^(?!.* {2})[a-zA-Z0-9 ]*$/,
-                                            message: 'Special characters and multiple consecutive spaces are not allowed!',
-                                          },
-                                          {
-                                            validator: (_, value) => {
-                                              if (/^[a-zA-Z][a-zA-Z ]*$/.test(value) && !/\d/.test(value)) {
+                                    label="How did you hear about us? (e.g., friend, agency)"
+                                    rules={[{ required: true, message: 'Please enter a reference' }, {
+                                        // Disallow special characters and multiple consecutive spaces
+                                        pattern: /^(?!.* {2})[a-zA-Z0-9 ]*$/,
+                                        message: 'Special characters and multiple consecutive spaces are not allowed!',
+                                    },
+                                    {
+                                        validator: (_, value) => {
+                                            if (/^[a-zA-Z][a-zA-Z ]*$/.test(value) && !/\d/.test(value)) {
                                                 return Promise.resolve();
-                                              }
-                                              return Promise.reject(new Error('Names cannot include numbers or multiple consecutive spaces!'));
-                                            },
-                                          },
-                                    ]}
+                                            }
+                                            return Promise.reject(new Error('Names cannot include numbers or multiple consecutive spaces!'));
+                                        },
+                                    },]}
                                 >
                                     <Input
                                         placeholder="Enter reference"
@@ -380,7 +374,7 @@ const JobApplicationForm = () => {
                             <Col lg={12} md={24} style={{ width: "100%" }}>
                                 <Form.Item
                                     name="noticePeriod"
-                                    label="What is your Notice Period?"
+                                    label="What is your notice period?"
                                     rules={[
                                         { required: true, message: 'Please enter your notice period' },
                                         { pattern: /^[0-9]+$/, message: 'Notice period must be a numeric value' },
@@ -409,7 +403,7 @@ const JobApplicationForm = () => {
                                         </Button>
                                     </Row>
                                 </Form.Item>
-                                <a onClick={toggleScreen} style={{ color: "#0d2e61", textAlign: "center", cursor: "pointer" }}>Already Submitted? Click Here!</a>
+                                <a onClick={toggleScreen} style={{ color: "#0d2e61", textAlign: "center", cursor: "pointer" }}>Already submitted? Click here!</a>
                             </div>
                             {token && (
                                 <div className="tokenDisplay">

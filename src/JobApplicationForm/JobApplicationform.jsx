@@ -1,4 +1,4 @@
-import React, { useContext,useState } from "react";
+import React, { useContext, useState } from "react";
 import "./JobApplication.css"
 import {
     Card,
@@ -20,7 +20,7 @@ const JobApplicationForm = () => {
     const { TabPane } = Tabs;
     const { Option } = Select;
     const { Text, Title } = Typography;
-    const [tokenNumber, setTokenNumber] = useState(null); 
+    const [tokenNumber, setTokenNumber] = useState(null);
     const onFinish = values => {
         console.log('Form values:', values);
         addJobApplication(values)
@@ -72,9 +72,9 @@ const JobApplicationForm = () => {
 
                 notification.success({
                     message: 'Success',
-                    description: responseData?.message || 'Job application added successfully!',
+                    description: responseData?.message || 'Submitted Successfully!',
                 });
-                console.log('Job application added successfully:', responseData);
+                console.log('Application Submitted Successfully:', responseData);
             } else {
                 const data = await response.json()
                 notification.error({ message: data?.message })

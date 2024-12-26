@@ -11,7 +11,8 @@ import {
     Input,
     InputNumber,
     Row,
-    notification
+    notification,
+    Spin
 } from 'antd';
 import { ApplicationContext } from "../Context/Applicationcontext";
 
@@ -21,12 +22,14 @@ const JobApplicationForm = () => {
     const { Option } = Select;
     const { Text, Title } = Typography;
     const [tokenNumber, setTokenNumber] = useState(null);
+
     const onFinish = values => {
         console.log('Form values:', values);
         addJobApplication(values)
 
     };
     const addJobApplication = async data => {
+
         const {
             department,
             position,
@@ -65,19 +68,42 @@ const JobApplicationForm = () => {
                 body: JSON.stringify(requestBody),
             });
 
+            // if (response.ok) {
+            //     const responseData = await response.json();
+            //     const receivedToken = responseData?.jobApplication?.token;
+            //     setTokenNumber(receivedToken);
+
+            //     notification.success({
+            //         message: 'Success',
+            //         description: responseData?.message || 'Submitted Successfully!',
+            //     });
+            //     console.log('Application Submitted Successfully:', responseData);
+            // } else {
+            //     const data = await response.json()
+            //     notification.error({ message: data?.message })
+            //     console.error('Error adding job application:', response.statusText);
+            // }
             if (response.ok) {
                 const responseData = await response.json();
                 const receivedToken = responseData?.jobApplication?.token;
                 setTokenNumber(receivedToken);
 
+                // Custom success message
                 notification.success({
-                    message: 'Success',
-                    description: responseData?.message || 'Submitted Successfully!',
+                    message: 'Submitted',
+                    description: `Job Application Submitted Successfully.`,
                 });
+
                 console.log('Application Submitted Successfully:', responseData);
             } else {
-                const data = await response.json()
-                notification.error({ message: data?.message })
+                const data = await response.json();
+
+                // Custom error message
+                notification.error({
+                    message: 'Submission Failed',
+                    description: data?.message || 'An error occurred while submitting your application. Please try again later.',
+                });
+
                 console.error('Error adding job application:', response.statusText);
             }
         } catch (error) {
@@ -133,8 +159,8 @@ const JobApplicationForm = () => {
                             <Col lg={12} md={24} style={{ width: "100%" }}>
                                 <Form.Item
                                     name="department"
-                                    label="Which department are you applying for?"
-                                    rules={[{ required: true, message: 'Please select a department' }]}
+                                    label="Which Department are you Applying for?"
+                                    rules={[{ required: true, message: 'Please select a Department!' }]}
                                 >
                                     <Select
                                         placeholder="Select Department"
@@ -156,23 +182,23 @@ const JobApplicationForm = () => {
                             <Col lg={12} md={24} style={{ width: "100%" }}>
                                 <Form.Item
                                     name="position"
-                                    label="What position are you applying for?"
-                                    rules={[{ required: true, message: 'Please enter the position' }, {
+                                    label="What Position are you Applying for?"
+                                    rules={[{ required: true, message: 'Please enter the Position!' }, {
                                         // Disallow special characters and multiple consecutive spaces
                                         pattern: /^(?!.* {2})[a-zA-Z0-9 ]*$/,
-                                        message: 'Special characters and multiple consecutive spaces are not allowed!',
+                                        message: 'Special characters and spaces are not allowed!',
                                     },
                                     {
                                         validator: (_, value) => {
                                             if (/^[a-zA-Z][a-zA-Z ]*$/.test(value) && !/\d/.test(value)) {
                                                 return Promise.resolve();
                                             }
-                                            return Promise.reject(new Error('Names cannot include numbers or multiple consecutive spaces!'));
+                                            return Promise.reject(new Error('Names cannot include numbers or spaces!'));
                                         },
                                     },]}
                                 >
                                     <Input
-                                        placeholder="Enter position"
+                                        placeholder="Enter Position"
                                         style={{
                                             // padding: '8px 12px',
                                             // backgroundColor: '#f6f8fb',
@@ -188,23 +214,23 @@ const JobApplicationForm = () => {
                             <Col lg={12} md={24} style={{ width: "100%" }}>
                                 <Form.Item
                                     name="fullName"
-                                    label="What is your full name?"
-                                    rules={[{ required: true, message: 'Please enter your full name' }, {
+                                    label="What is your Full Name?"
+                                    rules={[{ required: true, message: 'Please enter your Full Name!' }, {
                                         // Disallow special characters and multiple consecutive spaces
                                         pattern: /^(?!.* {2})[a-zA-Z0-9 ]*$/,
-                                        message: 'Special characters and multiple consecutive spaces are not allowed!',
+                                        message: 'Special characters and spaces are not allowed!',
                                     },
                                     {
                                         validator: (_, value) => {
                                             if (/^[a-zA-Z][a-zA-Z ]*$/.test(value) && !/\d/.test(value)) {
                                                 return Promise.resolve();
                                             }
-                                            return Promise.reject(new Error('Names cannot include numbers or multiple consecutive spaces!'));
+                                            return Promise.reject(new Error('Names cannot include numbers or spaces!'));
                                         },
                                     },]}
                                 >
                                     <Input
-                                        placeholder="Enter full name"
+                                        placeholder="Enter Full Name"
                                         style={{
                                             // padding: '8px 12px',
                                             // backgroundColor: '#f6f8fb',
@@ -218,14 +244,14 @@ const JobApplicationForm = () => {
                             <Col lg={12} md={24} style={{ width: "100%" }}>
                                 <Form.Item
                                     name="contactNumber"
-                                    label="What is your contact number?"
+                                    label="What is your Contact Number?"
                                     rules={[
-                                        { required: true, message: 'Please enter your contact number' },
-                                        { pattern: /^[0-9]{10}$/, message: 'Contact number must be a 10-digit number' },
+                                        { required: true, message: 'Please enter your Contact Number!' },
+                                        { pattern: /^[0-9]{10}$/, message: 'Contact number must be a 10-digit number!' },
                                     ]}
                                 >
                                     <Input
-                                        placeholder="Enter contact number"
+                                        placeholder="Enter Contact Number"
                                         style={{
                                             // padding: '8px 12px',
                                             // backgroundColor: '#f6f8fb',
@@ -241,19 +267,19 @@ const JobApplicationForm = () => {
                             <Col lg={12} md={24} style={{ width: "100%" }}>
                                 <Form.Item
                                     name="currentLocation"
-                                    label="Where are you currently located?"
+                                    label="Where are you Currently Located?"
                                     rules={[
-                                        { required: true, message: 'Please enter your current location' },
+                                        { required: true, message: 'Please enter your Current Location!' },
                                         {
                                             // Disallow special characters and multiple consecutive spaces
                                             pattern: /^(?!.* {2})[a-zA-Z0-9 ]*$/,
-                                            message: 'Special characters and multiple consecutive spaces are not allowed!',
+                                            message: 'Special characters and spaces are not allowed!',
                                         },
 
                                     ]}
                                 >
                                     <Input
-                                        placeholder="Enter current location"
+                                        placeholder="Enter Current Location"
                                         style={{
                                             // padding: '8px 12px',
                                             // backgroundColor: '#f6f8fb',
@@ -267,19 +293,19 @@ const JobApplicationForm = () => {
                             <Col lg={12} md={24} style={{ width: "100%" }}>
                                 <Form.Item
                                     name="permanentLocation"
-                                    label="What is your permanent location?"
+                                    label="What is your Permanent Location?"
                                     rules={[
-                                        { required: true, message: 'Please enter your permanent location' },
+                                        { required: true, message: 'Please enter your Permanent Location!' },
                                         {
                                             // Disallow special characters and multiple consecutive spaces
                                             pattern: /^(?!.* {2})[a-zA-Z0-9 ]*$/,
-                                            message: 'Special characters and multiple consecutive spaces are not allowed!',
+                                            message: 'Special characters and spaces are not allowed!',
                                         },
 
                                     ]}
                                 >
                                     <Input
-                                        placeholder="Enter permanent location"
+                                        placeholder="Enter Permanent Location"
                                         style={{
                                             // padding: '8px 12px',
                                             // backgroundColor: '#f6f8fb',
@@ -295,19 +321,19 @@ const JobApplicationForm = () => {
                             <Col lg={12} md={24} style={{ width: "100%" }}>
                                 <Form.Item
                                     name="qualification"
-                                    label="What is your highest qualification?"
+                                    label="What is your Highest Qualification?"
                                     rules={[
-                                        { required: true, message: 'Please enter your qualification' },
+                                        { required: true, message: 'Please enter your Qualification!' },
                                         {
                                             // Disallow special characters and multiple consecutive spaces
                                             pattern: /^(?!.* {2})[a-zA-Z0-9 ]*$/,
-                                            message: 'Special characters and multiple consecutive spaces are not allowed!',
+                                            message: 'Special characters and spaces are not allowed!',
                                         },
 
                                     ]}
                                 >
                                     <Input
-                                        placeholder="Enter qualification"
+                                        placeholder="Enter Qualification"
                                         style={{
                                             // padding: '8px 12px',
                                             // backgroundColor: '#f6f8fb',
@@ -321,17 +347,17 @@ const JobApplicationForm = () => {
                             <Col lg={12} md={24} style={{ width: "100%" }}>
                                 <Form.Item
                                     name="experience"
-                                    label="How many years of experience do you have?"
+                                    label="How many years of Experience do you have?"
                                     rules={[
-                                        { required: true, message: 'Please enter your experience' },
-                                        { type: 'number', min: 0, message: 'Experience must be a positive number' },
+                                        { required: true, message: 'Please enter your Experience!' },
+                                        { type: 'number', min: 0, message: 'Experience must be a positive number!' },
 
                                     ]}
 
                                 >
                                     <InputNumber
                                         min={0}
-                                        placeholder="Enter years of experience"
+                                        placeholder="Enter years of Experience"
                                         style={{
                                             // padding: '8px 12px',
                                             width: '100%',
@@ -348,23 +374,23 @@ const JobApplicationForm = () => {
                             <Col lg={12} md={24} style={{ width: "100%" }}>
                                 <Form.Item
                                     name="reference"
-                                    label="How did you hear about us? (e.g., friend, agency)"
-                                    rules={[{ required: true, message: 'Please enter a reference' }, {
+                                    label="How did you hear About Us? (e.g., Friend, Agency)"
+                                    rules={[{ required: true, message: 'Please enter a Reference!' }, {
                                         // Disallow special characters and multiple consecutive spaces
                                         pattern: /^(?!.* {2})[a-zA-Z0-9 ]*$/,
-                                        message: 'Special characters and multiple consecutive spaces are not allowed!',
+                                        message: 'Special characters and spaces are not allowed!',
                                     },
                                     {
                                         validator: (_, value) => {
                                             if (/^[a-zA-Z][a-zA-Z ]*$/.test(value) && !/\d/.test(value)) {
                                                 return Promise.resolve();
                                             }
-                                            return Promise.reject(new Error('Names cannot include numbers or multiple consecutive spaces!'));
+                                            return Promise.reject(new Error('Names cannot include numbers or spaces!'));
                                         },
                                     },]}
                                 >
                                     <Input
-                                        placeholder="Enter reference"
+                                        placeholder="Enter Reference"
                                         style={{
                                             // padding: '8px 12px',
                                             // backgroundColor: '#f6f8fb',
@@ -378,14 +404,14 @@ const JobApplicationForm = () => {
                             <Col lg={12} md={24} style={{ width: "100%" }}>
                                 <Form.Item
                                     name="noticePeriod"
-                                    label="What is your notice period?"
+                                    label="What is your Notice Period?"
                                     rules={[
-                                        { required: true, message: 'Please enter your notice period' },
-                                        { pattern: /^[0-9]+$/, message: 'Notice period must be a numeric value' },
+                                        { required: true, message: 'Please enter your Notice Period!' },
+                                        { pattern: /^[0-9]+$/, message: 'Notice period must be a numeric value!' },
                                     ]}
                                 >
                                     <Input
-                                        placeholder="Enter notice period"
+                                        placeholder="Enter Notice Period"
                                         style={{
                                             // padding: '8px 12px',
                                             // backgroundColor: '#f6f8fb',
@@ -409,13 +435,17 @@ const JobApplicationForm = () => {
                                 </Form.Item>
                                 <a onClick={toggleScreen} style={{ color: "#0d2e61", textAlign: "center", cursor: "pointer" }}>Already submitted? Click here!</a>
                             </div>
-                            {tokenNumber && (
-                                <div className="tokenDisplay">
-                                    <h1>Your Token  Number is: {tokenNumber}</h1>
-                                </div>
-                            )}
+                            
                         </div>
-                        <br /><br />
+
+                        <br />
+                        {loading ? (
+                                <Spin tip="Generating your token number..." size="large" />
+                            ) : tokenNumber ? (
+                                <div className="tokenDisplay">
+                                    <h1>Your Token Number is: {tokenNumber}</h1>
+                                </div>
+                            ) : null}
                     </Form>
 
                 </div>

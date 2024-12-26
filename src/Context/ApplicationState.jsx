@@ -39,7 +39,7 @@ export const ApplicationState = ({ children }) => {
             .catch((error) => {
                 notification.error({
                     message: 'Error',
-                    description: 'An error occurred while fetching the token.',
+                    description: 'We have not received any application associated with this phone number.',
                 });
                 console.error('Fetch error:', error);
             })

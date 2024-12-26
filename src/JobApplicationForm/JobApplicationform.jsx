@@ -404,7 +404,7 @@ const JobApplicationForm = () => {
                             <Col lg={12} md={24} style={{ width: "100%" }}>
                                 <Form.Item
                                     name="noticePeriod"
-                                    label="What is your Notice Period?"
+                                    label="What is your Notice Period (in months)?"
                                     rules={[
                                         { required: true, message: 'Please enter your Notice Period!' },
                                         { pattern: /^[0-9]+$/, message: 'Notice period must be a numeric value!' },
